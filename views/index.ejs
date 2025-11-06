@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All posts</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Quora Posts</h1>
+    </div>
+    <div class="container">
+      <% for(post of posts) { %>
+      <div class="post">
+        <h2 class="user">@<%= post.username %></h2>
+        <br />
+        <h3 class="content"><%= post.content %></h3>
+        <br />
+        <div class="button-container">
+          <a class="button" href="http://localhost:8080/posts/<%= post.id %>"
+            >Details</a
+          >
+          <a
+            class="button"
+            href="http://localhost:8080/posts/:<% post.id %>/edit"
+            >Edit</a
+          >
+          <form method="post" action="/posts/<%= post.id %>/?_method=DELETE">
+            <button class="btn-delete">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <% } %>
+      <br />
+      <a href="http://localhost:8080/posts/new" class="button newpost"
+        >New post</a
+      >
+    </div>
+  </body>
+</html>
